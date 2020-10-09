@@ -2902,6 +2902,10 @@ class quill_better_table_BetterTable extends Module {
     super(quill, options); // handle click on quill-better-table
 
     this.quill.root.addEventListener('click', evt => {
+      if (!this.quill.isEnabled()) {
+        return;
+      }
+
       // bugfix: evt.path is undefined in Safari, FF, Micro Edge
       const path = getEventComposedPath(evt);
       if (!path || path.length <= 0) return;
@@ -2922,6 +2926,10 @@ class quill_better_table_BetterTable extends Module {
     }, false); // handle right click on quill-better-table
 
     this.quill.root.addEventListener('contextmenu', evt => {
+      if (!this.quill.isEnabled()) {
+        return;
+      }
+      
       if (!this.table) return true;
       evt.preventDefault(); // bugfix: evt.path is undefined in Safari, FF, Micro Edge
 

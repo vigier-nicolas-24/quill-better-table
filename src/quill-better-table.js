@@ -48,6 +48,10 @@ class BetterTable extends Module {
 
     // handle click on quill-better-table
     this.quill.root.addEventListener('click', (evt) => {
+      if (!this.quill.isEnabled()) {
+        return;
+      }
+
       // bugfix: evt.path is undefined in Safari, FF, Micro Edge
       const path = getEventComposedPath(evt)
 
@@ -73,6 +77,10 @@ class BetterTable extends Module {
 
     // handle right click on quill-better-table
     this.quill.root.addEventListener('contextmenu', (evt) => {
+      if (!this.quill.isEnabled()) {
+        return;
+      }
+      
       if (!this.table) return true
       evt.preventDefault()
 
